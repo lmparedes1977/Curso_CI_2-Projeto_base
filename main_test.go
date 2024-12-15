@@ -10,9 +10,9 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/guilhermeonrails/api-go-gin/controllers"
-	"github.com/guilhermeonrails/api-go-gin/database"
-	"github.com/guilhermeonrails/api-go-gin/models"
+	"github.com/lmparedes1977/Curso_CI_2-Projeto_base/controllers"
+	"github.com/lmparedes1977/Curso_CI_2-Projeto_base/database"
+	"github.com/lmparedes1977/Curso_CI_2-Projeto_base/models"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,7 +3,7 @@ package database
 import (
 	"log"
 
-	"github.com/guilhermeonrails/api-go-gin/models"
+	"github.com/lmparedes1977/Curso_CI_2-Projeto_base/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

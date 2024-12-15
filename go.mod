@@ -1,4 +1,4 @@
-module github.com/guilhermeonrails/api-go-gin
+module github.com/lmparedes1977/Curso_CI_2-Projeto_base
 
 go 1.15
 
