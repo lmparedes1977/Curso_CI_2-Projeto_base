@@ -7,7 +7,11 @@ jobs:
 
   EC2:
     runs-on: ubuntu-latest
-    steps:    
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+      with:
+        name: executavel 
     - uses: actions/checkout@v3
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@main
@@ -16,11 +20,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: /home/${{ secrets.REMOTE_USER }}
-        EXCLUDE: "postgres-data"
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v4.1.8
-      with:
-        name: executavel    
+        EXCLUDE: "postgres-data"   
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.2.0
       with:
@@ -35,5 +35,5 @@ jobs:
           export DBNAME=${{ secrets.DB_NAME }}
           export DBPORT=${{ secrets.DB_PORT }}
           export PORT=8000
-          chmod +x ./main
-          nohup ./main &
+          chmod +x /home/${{ secrets.REMOTE_USER }}/main
+          nohup /home/${{ secrets.REMOTE_USER }}/main &
