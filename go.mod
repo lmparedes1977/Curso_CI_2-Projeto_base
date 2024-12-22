@@ -1,6 +1,6 @@
 module github.com/lmparedes1977/Curso_CI_2-Projeto_base
 
-go 1.15
+go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.7.7
