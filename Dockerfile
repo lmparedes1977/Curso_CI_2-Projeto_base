@@ -12,4 +12,8 @@ ENV DBNAME root
 
 COPY ./main main
 
+RUN chmod +x main
+
+COPY ./templates/ templates/
+
 ENTRYPOINT [ "./main" ]
