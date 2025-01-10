@@ -16,7 +16,10 @@ jobs:
           aws-region: us-east-2
           
       - name: Obtendo arquivo da tarefa
-        run: aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json      
+        run: aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json
+        
+      - name: Copiando task-definition
+        run: cp task-definition.json task-definition.json.old
         
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -37,6 +40,19 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: my-service
+          cluster: my-cluster
+          wait-for-service-stability: true
+
+      - name: Requisição
+        continue-on-error: true
+        run: echo "REQUEST=0" >> $GITHUB_ENV ; sleep 30s ; wget dns.da.aplicacao.ou.load.balancer:8000/leo || echo "REQUEST=1" >> $GITHUB_ENV
+
+      - name: Deploy Amazon ECS task definition
+        if: ${{ env.REQUEST != 0 }}
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: task-definition.json.old
           service: my-service
           cluster: my-cluster
           wait-for-service-stability: true
