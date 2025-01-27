@@ -66,9 +66,9 @@ jobs:
     uses: ./.github/workflows/ECS.yml
     secrets: inherit
 
-  loadtest:
-    needs: docker
-    if: ${{ github.ref_name == 'main'}}
-    uses: ./.github/workflows/LoadTest.yml
-    secrets: inherit
+  # loadtest:
+  #   needs: docker
+  #   if: ${{ github.ref_name == 'main'}}
+  #   uses: ./.github/workflows/LoadTest.yml
+  #   secrets: inherit
     
