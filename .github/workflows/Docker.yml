@@ -30,6 +30,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: leoparedes/go_ci:${{github.run_number}}
+        tags: leoparedes/go-ci:${{github.run_number}}
 
           

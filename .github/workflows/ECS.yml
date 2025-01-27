@@ -27,7 +27,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: Go
-          image: leoparedes/go_ci:{{ github.run_number }}
+          image: leoparedes/go-ci:${{github.run_number}}
           environment-variables: |
             HOST=${{ secrets.DB_HOST }}
             USER=${{ secrets.DB_USER }}
